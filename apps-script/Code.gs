@@ -3,8 +3,8 @@
  *
  * This script lives inside the Google Sheet that records every ticket.
  * The ticket desk page (GitHub Pages) sends each ticket here; the script
- * checks the manager PIN, gives the ticket an ID, blocks a table number
- * that is already assigned, and adds a row to the "Tickets" tab.
+ * checks the manager PIN, gives the ticket an ID, stops a table once all
+ * its seats are assigned, and adds a row to the "Tickets" tab.
  *
  * @OnlyCurrentDoc
  */
@@ -17,6 +17,7 @@ const MANAGER_PIN = 'CHANGE_ME';
 const SHEET_NAME = 'Tickets';
 const HEADERS = ['Timestamp', 'Ticket ID', 'Name', 'Email', 'Phone', 'Package', 'Table Number'];
 const ID_PREFIX = 'SBP-';
+const SEATS_PER_TABLE = 4; // people on one Brunch Crew table, one ticket each
 
 const PACKAGES = {
   solo: 'THE SOLO GROOVE - SINGLES PACKAGE',
@@ -97,6 +98,7 @@ function doPost(e) {
     const sheet = getSheet_();
     const lastRow = sheet.getLastRow();
     let highest = 0;
+    const seated = []; // names already on this table
 
     if (lastRow > 1) {
       const rows = sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getDisplayValues();
@@ -106,12 +108,14 @@ function doPost(e) {
 
         if (pkg === 'crew' && rows[i][5] === PACKAGES.crew) {
           const taken = String(rows[i][6]).trim().replace(/^0+(?=\d)/, '');
-          if (taken === table) {
-            return fail_('TABLE_TAKEN', 'Table ' + table + ' is already assigned to ' + rows[i][2] +
-              ' (' + rows[i][1] + '). Choose another table number.');
-          }
+          if (taken === table) seated.push(rows[i][2]);
         }
       }
+    }
+
+    if (pkg === 'crew' && seated.length >= SEATS_PER_TABLE) {
+      return fail_('TABLE_FULL', 'Table ' + table + ' is full. All ' + SEATS_PER_TABLE +
+        ' seats are assigned (' + seated.join(', ') + '). Choose another table number.');
     }
 
     const next = String(highest + 1);
@@ -122,7 +126,11 @@ function doPost(e) {
     range.setValues([[new Date(), ticketId, name, email, phone, PACKAGES[pkg], table]]);
     SpreadsheetApp.flush();
 
-    const result = JSON.stringify({ ok: true, ticketId: ticketId, name: name, package: pkg, table: table });
+    const result = JSON.stringify({
+      ok: true, ticketId: ticketId, name: name, package: pkg, table: table,
+      seatsTaken: pkg === 'crew' ? seated.length + 1 : 0,
+      seatsTotal: pkg === 'crew' ? SEATS_PER_TABLE : 0
+    });
     if (data.requestId) cache.put(requestKey, result, 21600);
     return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {

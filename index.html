@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Savka Brunch Party ticket desk</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23fe0000%27/%3E%3Crect x=%276%27 y=%2713%27 width=%2720%27 height=%276%27 rx=%273%27 fill=%27%23fec63d%27/%3E%3C/svg%3E">
+<link rel="preload" href="assets/CreatoDisplay-Black.otf" as="font" type="font/otf" crossorigin>
+<style>
+  @font-face {
+    font-family: "Creato Display";
+    src: url("assets/CreatoDisplay-Black.otf") format("opentype");
+    font-weight: 900;
+    font-display: block;
+  }
+
+  :root {
+    --red: #fe0000;
+    --ray: #ff3a3a;
+    --deep-red: #c11416;
+    --yellow: #fec63d;
+    --cream: #f4e9d7;
+    --paper: #fbf6ec;
+    --black: #000;
+    --green: #3ab54a;
+    --deep-green: #006738;
+    --display: "Creato Display", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --text: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--text);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--black);
+    background:
+      repeating-conic-gradient(from -4deg at 50% 0, var(--red) 0 6deg, var(--ray) 6deg 12deg) fixed;
+    background-color: var(--red);
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 28px 18px 56px;
+  }
+
+  /* ---------- Header: the flyer's slanted title blocks ---------- */
+  .masthead { padding: 6px 0 34px; }
+
+  .house {
+    margin: 0 0 18px;
+    font-family: var(--display);
+    font-size: 15px;
+    letter-spacing: 0.34em;
+    color: #fff;
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(34px, 9.2vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transform: rotate(-5deg);
+    transform-origin: left bottom;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .title span { display: block; padding: 0.14em 0.34em 0.1em; }
+  .title .t1 { background: var(--black); color: #fff; box-shadow: 0.12em 0.12em 0 #2f2f2f; }
+  .title .t2 { background: var(--yellow); color: var(--black); margin-left: 1.5em; box-shadow: 0.12em 0.12em 0 #b98613; }
+
+  /* ---------- Desk layout ---------- */
+  .desk {
+    display: grid;
+    gap: 22px;
+    align-items: start;
+  }
+  @media (min-width: 880px) {
+    .desk { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 34px; }
+  }
+
+  .panel {
+    background: var(--paper);
+    border-radius: 34px;
+    padding: 26px 22px 28px;
+    box-shadow: 0 0 0 6px var(--yellow), 0 18px 0 6px rgba(0, 0, 0, 0.22);
+  }
+  @media (min-width: 560px) { .panel { padding: 32px 34px 34px; } }
+
+  .panel h2 {
+    margin: 0 0 4px;
+    font-family: var(--display);
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .panel .lede { margin: 0 0 22px; color: #3d3a34; }
+
+  /* ---------- Form ---------- */
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .field .hint { display: block; margin-top: 5px; font-size: 14px; color: #5a554c; }
+
+  input, select {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+    font: inherit;
+    font-size: 17px;
+    color: var(--black);
+    background: #fff;
+    border: 2px solid var(--black);
+    border-radius: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  select {
+    padding-right: 46px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'%3E%3Cpath d='M1 1l7 7 7-7' fill='none' stroke='%23000' stroke-width='2.6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  @media (max-width: 480px) { select { font-size: 16px; padding-left: 12px; padding-right: 38px; letter-spacing: -0.015em; background-position: right 12px center; } }
+  input::placeholder { color: #9a948a; }
+  input:focus-visible, select:focus-visible, button:focus-visible, a.btn:focus-visible {
+    outline: 4px solid var(--yellow);
+    outline-offset: 2px;
+    border-color: var(--black);
+  }
+  .panel input:focus-visible, .panel select:focus-visible, .panel button:focus-visible, .panel a.btn:focus-visible {
+    outline-color: var(--deep-red);
+  }
+  input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--deep-red); background: #fff3f1; }
+
+  .pin-row { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: end; }
+  .pin-row .note { font-size: 14px; color: #5a554c; padding-bottom: 8px; }
+  #pin { letter-spacing: 0.3em; font-weight: 700; }
+
+  .table-field {
+    padding: 16px;
+    margin: 0 -6px 16px;
+    background: var(--deep-red);
+    border-radius: 18px;
+    color: #fff;
+  }
+  .table-field label { color: #fff; }
+  .table-field .hint { color: #ffd9d6; }
+  .table-field input {
+    width: 120px;
+    font-family: var(--display);
+    font-size: 26px;
+    text-align: center;
+    border-color: #fff;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 58px;
+    padding: 10px 20px;
+    font-family: var(--display);
+    font-size: 19px;
+    line-height: 1.15;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background: var(--black);
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.08s ease;
+  }
+  .btn:active { transform: translateY(2px); }
+  .btn[disabled] { opacity: 0.6; cursor: progress; }
+  .btn.go { background: var(--green); box-shadow: 0 6px 0 var(--deep-green); margin-bottom: 6px; }
+  .btn.go:active { box-shadow: 0 4px 0 var(--deep-green); }
+  .btn.quiet { background: transparent; color: var(--black); border: 2px solid var(--black); }
+
+  .status {
+    margin: 16px 0 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15.5px;
+  }
+  .status[hidden] { display: none; }
+  .status.error { background: #ffe1dd; color: #7d0b0c; border: 2px solid var(--deep-red); }
+  .status.info { background: #fff3cf; color: #4a3600; border: 2px solid var(--yellow); }
+
+  /* ---------- Ticket preview ---------- */
+  .preview { margin: 0; }
+  .preview canvas, .issued img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    background: #111;
+    border-radius: 12px;
+    box-shadow: 0 14px 0 rgba(0, 0, 0, 0.22);
+  }
+  .preview figcaption {
+    margin-top: 26px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* ---------- Issued state ---------- */
+  .issued[hidden], .desk[hidden] { display: none; }
+  .issued { display: grid; gap: 24px; align-items: start; }
+  @media (min-width: 880px) {
+    .issued { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 34px; }
+  }
+  .issued .id {
+    display: inline-block;
+    margin: 8px 0 14px;
+    padding: 6px 14px 4px;
+    font-family: var(--display);
+    font-size: 22px;
+    background: var(--yellow);
+    border-radius: 10px;
+  }
+  .issued dl { margin: 0 0 22px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 16px; }
+  .issued dt { color: #5a554c; }
+  .issued dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+  .actions { display: grid; gap: 12px; }
+  .actions .btn[hidden] { display: none; }
+  .small { font-size: 14px; color: #5a554c; margin: 10px 0 0; }
+
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="house">SAVKA BISTRO</p>
+    <h1 class="title"><span class="t1">Brunch party</span><span class="t2">Ticket desk</span></h1>
+  </header>
+
+  <main>
+    <!-- Step 1: fill in the client -->
+    <div class="desk" id="desk">
+      <form class="panel" id="ticket-form" novalidate>
+        <h2>Issue a ticket</h2>
+        <p class="lede">Fill this in after the client has paid. The ticket downloads when you save.</p>
+
+        <div class="field pin-row">
+          <div>
+            <label for="pin">Manager PIN</label>
+            <input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" required>
+          </div>
+          <p class="note" id="pin-note">Stays filled in on this device after the first ticket.</p>
+        </div>
+
+        <div class="field">
+          <label for="name">Client name</label>
+          <input id="name" name="name" type="text" autocomplete="off" autocapitalize="words" maxlength="40" required>
+          <span class="hint">Shown on the ticket in capital letters.</span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="off" autocapitalize="none" maxlength="120" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="off" maxlength="20" placeholder="0803 000 0000" required>
+        </div>
+
+        <div class="field">
+          <label for="package">Package</label>
+          <select id="package" name="package" required>
+            <option value="" selected disabled>Choose a package</option>
+            <option value="solo">THE SOLO GROOVE - SINGLES PACKAGE</option>
+            <option value="couples">BRUNCH FOR TWO - COUPLES PACKAGE</option>
+            <option value="crew">THE BRUNCH CREW - TABLE FOR 4</option>
+          </select>
+        </div>
+
+        <div class="field table-field" id="table-field" hidden>
+          <label for="table">Table number for this crew</label>
+          <input id="table" name="table" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3">
+          <span class="hint">Numbers only. A table that is already assigned cannot be given out twice.</span>
+        </div>
+
+        <button class="btn go" id="save" type="submit">Save and download ticket</button>
+        <p class="status" id="status" role="alert" hidden></p>
+      </form>
+
+      <figure class="preview">
+        <canvas id="preview" width="900" height="900" aria-label="Ticket preview"></canvas>
+        <figcaption id="preview-caption">Choose a package to see the ticket.</figcaption>
+      </figure>
+    </div>
+
+    <!-- Step 2: ticket saved -->
+    <div class="issued" id="issued" hidden>
+      <img id="ticket-img" alt="The saved ticket">
+      <div class="panel">
+        <h2 id="issued-title" tabindex="-1">Ticket saved</h2>
+        <div class="id" id="issued-id"></div>
+        <dl>
+          <dt>Name</dt><dd id="issued-name"></dd>
+          <dt>Package</dt><dd id="issued-package"></dd>
+          <dt id="issued-table-label">Table</dt><dd id="issued-table"></dd>
+          <dt>Phone</dt><dd id="issued-phone"></dd>
+        </dl>
+        <div class="actions">
+          <button class="btn go" id="share" type="button" hidden>Share ticket to WhatsApp</button>
+          <a class="btn" id="download" download>Download ticket again</a>
+          <a class="btn quiet" id="chat" target="_blank" rel="noopener">Open WhatsApp chat with client</a>
+          <button class="btn quiet" id="another" type="button">Issue another ticket</button>
+        </div>
+        <p class="small" id="issued-note">The details are saved on the Google Sheet. The ticket image is in your downloads.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Settings
+     ------------------------------------------------------------------ */
+  var CONFIG = {
+    // The web app link from the Google Sheet script (Deploy > Manage deployments).
+    endpoint: 'https://script.google.com/macros/s/AKfycbyNK2rJvC2dmVUA5I25SivYfBEHEV8V6yEaC7As-RVl80a9WgQh8YA8-Enio7azT_wQnQ/exec'
+  };
+
+  // All positions are measured on the 2576 x 2576 ticket artwork.
+  var BASE = 2576;
+  var FONT = '"Creato Display"';
+  var CAP = 0.712;           // cap height of Creato Display Black, per 1 unit of font size
+  var NAME = { cx: 1288, cy: 1509, size: 167, track: -0.023, maxWidth: 1430 };
+  var TABLE = { cx: 1683, cy: 475.5, size: 104, track: -0.02, maxWidth: 168, color: '#ffffff' };
+
+  var PACKAGES = {
+    solo:    { label: 'THE SOLO GROOVE - SINGLES PACKAGE', short: 'The Solo Groove', src: 'assets/ticket-solo.jpg',    nameColor: '#fec63d' },
+    couples: { label: 'BRUNCH FOR TWO - COUPLES PACKAGE',  short: 'Brunch for Two',  src: 'assets/ticket-couples.jpg', nameColor: '#000000' },
+    crew:    { label: 'THE BRUNCH CREW - TABLE FOR 4',     short: 'The Brunch Crew', src: 'assets/ticket-crew.jpg',    nameColor: '#000000', table: true }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $('ticket-form'), statusEl = $('status'), saveBtn = $('save');
+  var fields = { pin: $('pin'), name: $('name'), email: $('email'), phone: $('phone'), package: $('package'), table: $('table') };
+  var previewCanvas = $('preview');
+  var images = {};
+  var current = null;      // the ticket that was just saved
+  var pendingRequestId = null;
+
+  /* ------------------------------------------------------------------
+     Small helpers
+     ------------------------------------------------------------------ */
+  function store(key, value) {
+    try {
+      if (value === undefined) return window.localStorage.getItem(key);
+      if (value === null) window.localStorage.removeItem(key); else window.localStorage.setItem(key, value);
+    } catch (e) { /* private mode: carry on without remembering */ }
+    return null;
+  }
+
+  function tidy(value) { return String(value || '').replace(/\s+/g, ' ').trim(); }
+
+  // The name as printed: capitals, and letters the font does not have
+  // (dotted Igbo and Yoruba letters) fall back to the plain letter.
+  function ticketName(value) {
+    var s = tidy(value);
+    try { s = s.normalize('NFD').replace(/[̣̇]/g, '').normalize('NFC'); } catch (e) {}
+    return s.toUpperCase();
+  }
+
+  function tableNumber(value) { return tidy(value).replace(/\D/g, '').replace(/^0+(?=\d)/, ''); }
+
+  function showStatus(kind, message) {
+    statusEl.className = 'status ' + kind;
+    statusEl.textContent = message;
+    statusEl.hidden = false;
+  }
+  function clearStatus() { statusEl.hidden = true; statusEl.textContent = ''; }
+
+  function loadImage(key) {
+    if (!images[key]) {
+      images[key] = new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () { resolve(img); };
+        img.onerror = function () { images[key] = null; reject(new Error('The ticket artwork did not load.')); };
+        img.src = PACKAGES[key].src;
+      });
+    }
+    return images[key];
+  }
+
+  function fontReady() {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    return document.fonts.load('900 100px ' + FONT).catch(function () {});
+  }
+
+  /* ------------------------------------------------------------------
+     Drawing the ticket
+     ------------------------------------------------------------------ */
+  // Draws one line of text centred on (cx, cy), shrinking it to fit maxWidth.
+  function drawFitted(ctx, text, spec, color, k) {
+    if (!text) return;
+    var chars = Array.from(text);
+    var size = spec.size * k;
+    var measure = function (sz) {
+      ctx.font = '900 ' + sz + 'px ' + FONT;
+      return ctx.measureText(text).width + (chars.length - 1) * spec.track * sz;
+    };
+    var width = measure(size);
+    var limit = spec.maxWidth * k;
+    if (width > limit) { size = size * limit / width; width = measure(size); }
+
+    ctx.font = '900 ' + size + 'px ' + FONT;
+    ctx.fillStyle = color;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    var left = spec.cx * k - width / 2;
+    var baseline = spec.cy * k + (CAP * size) / 2;
+    var prefix = '';
+    for (var i = 0; i < chars.length; i++) {
+      // Measuring the text so far keeps the font's own kerning between letters.
+      var x = left + ctx.measureText(prefix).width + i * spec.track * size;
+      ctx.fillText(chars[i], x, baseline);
+      prefix += chars[i];
+    }
+  }
+
+  function drawTicket(canvas, ticket) {
+    var pkg = PACKAGES[ticket.package];
+    return Promise.all([loadImage(ticket.package), fontReady()]).then(function (res) {
+      var ctx = canvas.getContext('2d');
+      var k = canvas.width / BASE;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(res[0], 0, 0, canvas.width, canvas.height);
+      drawFitted(ctx, ticketName(ticket.name), NAME, pkg.nameColor, k);
+      if (pkg.table) drawFitted(ctx, tableNumber(ticket.table), TABLE, TABLE.color, k);
+    });
+  }
+
+  function renderFullTicket(ticket) {
+    var canvas = document.createElement('canvas');
+    canvas.width = BASE; canvas.height = BASE;
+    return drawTicket(canvas, ticket).then(function () {
+      return new Promise(function (resolve, reject) {
+        canvas.toBlob(function (blob) {
+          if (blob) resolve(blob); else reject(new Error('The ticket image could not be made.'));
+        }, 'image/jpeg', 0.93);
+      });
+    });
+  }
+
+  var previewTimer = null;
+  function refreshPreview() {
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(function () {
+      var key = fields.package.value;
+      if (!PACKAGES[key]) return;
+      drawTicket(previewCanvas, { package: key, name: fields.name.value, table: fields.table.value })
+        .then(function () { $('preview-caption').textContent = 'Preview. Check the spelling of the name before you save.'; })
+        .catch(function () { $('preview-caption').textContent = 'The preview did not load. Check your connection.'; });
+    }, 90);
+  }
+
+  function drawEmptyPreview() {
+    var ctx = previewCanvas.getContext('2d');
+    ctx.fillStyle = '#c11416';
+    ctx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+  }
+
+  /* ------------------------------------------------------------------
+     Form behaviour
+     ------------------------------------------------------------------ */
+  function syncTableField() {
+    var isCrew = fields.package.value === 'crew';
+    $('table-field').hidden = !isCrew;
+    fields.table.required = isCrew;
+    if (!isCrew) { fields.table.value = ''; fields.table.removeAttribute('aria-invalid'); }
+  }
+
+  function validate() {
+    var problems = [];
+    var check = function (el, ok, message) {
+      if (ok) { el.removeAttribute('aria-invalid'); } else { el.setAttribute('aria-invalid', 'true'); problems.push({ el: el, message: message }); }
+    };
+    check(fields.pin, tidy(fields.pin.value).length > 0, 'Enter the manager PIN.');
+    check(fields.name, tidy(fields.name.value).length >= 2, 'Enter the client name.');
+    check(fields.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(tidy(fields.email.value)), 'Enter a valid email address.');
+    check(fields.phone, /^\+?[0-9][0-9 ()\-]{6,19}$/.test(tidy(fields.phone.value)), 'Enter a valid phone number.');
+    check(fields.package, !!PACKAGES[fields.package.value], 'Choose a package.');
+    if (fields.package.value === 'crew') {
+      check(fields.table, /^[0-9]{1,3}$/.test(tableNumber(fields.table.value)), 'Enter the table number for this crew.');
+    }
+    return problems;
+  }
+
+  function newRequestId() {
+    return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function saveToSheet(payload) {
+    var controller = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (controller) controller.abort(); }, 45000);
+    // text/plain keeps this a simple request, which Google Apps Script accepts from any site.
+    return fetch(CONFIG.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: controller ? controller.signal : undefined
+    }).then(function (res) {
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }, function (err) { clearTimeout(timer); throw err; });
+  }
+
+  function fileName(ticket) {
+    var safe = ticketName(ticket.name).replace(/[^A-Z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'TICKET';
+    return 'Savka-Brunch-' + ticket.ticketId + '-' + safe + '.jpg';
+  }
+
+  function whatsappNumber(phone) {
+    var d = String(phone).replace(/\D/g, '');
+    if (d.indexOf('00') === 0) d = d.slice(2);
+    else if (d.charAt(0) === '0') d = '234' + d.slice(1);
+    return d;
+  }
+
+  function triggerDownload(url, name) {
+    var a = document.createElement('a');
+    a.href = url; a.download = name; a.style.display = 'none';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  function showIssued(ticket, blob) {
+    if (current && current.url) URL.revokeObjectURL(current.url);
+    var name = fileName(ticket);
+    var url = URL.createObjectURL(blob);
+    var file = null;
+    try { file = new File([blob], name, { type: 'image/jpeg' }); } catch (e) {}
+    current = { ticket: ticket, blob: blob, url: url, file: file, name: name };
+
+    $('ticket-img').src = url;
+    $('issued-id').textContent = ticket.ticketId;
+    $('issued-name').textContent = ticketName(ticket.name);
+    $('issued-package').textContent = PACKAGES[ticket.package].short;
+    var hasTable = !!PACKAGES[ticket.package].table;
+    $('issued-table-label').hidden = !hasTable;
+    $('issued-table').hidden = !hasTable;
+    $('issued-table').textContent = hasTable ? ticket.table : '';
+    $('issued-phone').textContent = ticket.phone;
+
+    var dl = $('download');
+    dl.href = url; dl.download = name;
+
+    var canShare = !!(file && navigator.canShare && navigator.canShare({ files: [file] }));
+    $('share').hidden = !canShare;
+    $('issued-note').textContent = canShare
+      ? 'The details are saved on the Google Sheet. Tap Share, choose WhatsApp, then pick the client.'
+      : 'The details are saved on the Google Sheet. The ticket image is in your downloads, ready to attach on WhatsApp.';
+
+    var message = 'Hello ' + tidy(ticket.name) + ', your Savka Sunday Brunch Party ticket (' + PACKAGES[ticket.package].short +
+      (hasTable ? ', table ' + ticket.table : '') + ') is confirmed. Ticket ID: ' + ticket.ticketId + '.';
+    $('chat').href = 'https://wa.me/' + whatsappNumber(ticket.phone) + '?text=' + encodeURIComponent(message);
+
+    $('desk').hidden = true;
+    $('issued').hidden = false;
+    window.scrollTo(0, 0);
+    $('issued-title').focus();
+
+    triggerDownload(url, name);
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    clearStatus();
+
+    var problems = validate();
+    if (problems.length) {
+      showStatus('error', problems[0].message);
+      problems[0].el.focus();
+      return;
+    }
+    if (!/^https:\/\//.test(CONFIG.endpoint)) {
+      showStatus('error', 'This page is not connected to the Google Sheet yet.');
+      return;
+    }
+
+    var ticket = {
+      name: tidy(fields.name.value),
+      email: tidy(fields.email.value),
+      phone: tidy(fields.phone.value),
+      package: fields.package.value,
+      table: fields.package.value === 'crew' ? tableNumber(fields.table.value) : ''
+    };
+    // The same ID is reused if she presses save again after a failed connection,
+    // so one client never gets saved twice.
+    var fingerprint = JSON.stringify(ticket);
+    if (!pendingRequestId || pendingRequestId.fingerprint !== fingerprint) {
+      pendingRequestId = { id: newRequestId(), fingerprint: fingerprint };
+    }
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving…';
+
+    var pin = tidy(fields.pin.value);
+    var payload = { pin: pin, requestId: pendingRequestId.id, name: ticket.name, email: ticket.email, phone: ticket.phone, package: ticket.package, table: ticket.table };
+
+    saveToSheet(payload).then(function (out) {
+      if (!out || !out.ok) {
+        var message = (out && out.message) || 'The ticket was not saved. Try again.';
+        showStatus('error', message);
+        if (out && (out.code === 'PIN' || out.code === 'LOCKED')) { store('savka-pin', null); fields.pin.setAttribute('aria-invalid', 'true'); fields.pin.focus(); }
+        if (out && out.code === 'TABLE_TAKEN') { fields.table.setAttribute('aria-invalid', 'true'); fields.table.focus(); }
+        return null;
+      }
+      store('savka-pin', pin);
+      pendingRequestId = null;
+      ticket.ticketId = out.ticketId;
+      if (out.table) ticket.table = out.table;
+      return renderFullTicket(ticket).then(function (blob) { showIssued(ticket, blob); });
+    }).catch(function () {
+      showStatus('error', 'Not saved. Check the internet connection and press save again.');
+    }).then(function () {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save and download ticket';
+    });
+  });
+
+  $('share').addEventListener('click', function () {
+    if (!current || !current.file) return;
+    navigator.share({ files: [current.file] }).catch(function () { /* she closed the share sheet */ });
+  });
+
+  $('another').addEventListener('click', function () {
+    fields.name.value = ''; fields.email.value = ''; fields.phone.value = ''; fields.table.value = '';
+    fields.package.value = '';
+    syncTableField();
+    clearStatus();
+    drawEmptyPreview();
+    $('preview-caption').textContent = 'Choose a package to see the ticket.';
+    $('issued').hidden = true;
+    $('desk').hidden = false;
+    window.scrollTo(0, 0);
+    fields.name.focus();
+  });
+
+  fields.package.addEventListener('change', function () { syncTableField(); refreshPreview(); });
+  fields.name.addEventListener('input', refreshPreview);
+  fields.table.addEventListener('input', function () {
+    var digits = fields.table.value.replace(/\D/g, '');
+    if (digits !== fields.table.value) fields.table.value = digits;
+    refreshPreview();
+  });
+  Object.keys(fields).forEach(function (key) {
+    fields[key].addEventListener('input', function () { fields[key].removeAttribute('aria-invalid'); clearStatus(); });
+    fields[key].addEventListener('change', function () { fields[key].removeAttribute('aria-invalid'); clearStatus(); });
+  });
+
+  /* ------------------------------------------------------------------
+     Start
+     ------------------------------------------------------------------ */
+  var savedPin = store('savka-pin');
+  if (savedPin) fields.pin.value = savedPin;
+  syncTableField();
+  drawEmptyPreview();
+  fontReady();
+  // Fetch the artwork in the background so the ticket is instant at save time.
+  window.addEventListener('load', function () { Object.keys(PACKAGES).forEach(function (k) { loadImage(k).catch(function () {}); }); });
+
+  // Used by the automated checks.
+  window.__savka = { drawTicket: drawTicket, renderFullTicket: renderFullTicket, ticketName: ticketName };
+})();
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ the table number for The Brunch Crew).
 | --- | --- | --- |
 | `index.html` | This repo (GitHub Pages) | The form, the live preview and the ticket drawing |
 | `assets/` | This repo | The three blank ticket designs and the Creato Display Black font |
-| `apps-script/Code.gs` | Copy of the script inside the Google Sheet | Checks the PIN, gives the ticket an ID, blocks a table that is already assigned, adds the row |
+| `apps-script/Code.gs` | Copy of the script inside the Google Sheet | Checks the PIN, gives the ticket an ID, stops a table at 4 tickets, adds the row |
 
 The page sends each ticket to the Google Sheet script. Only when the sheet
 confirms the save does the page draw and download the ticket, so every ticket
@@ -28,8 +28,12 @@ Timestamp, Ticket ID, Name, Email, Phone, Package, Table Number
 - **Manager PIN**: open the Google Sheet, then Extensions > Apps Script. Change
   `MANAGER_PIN` at the top, then Deploy > Manage deployments > edit (pencil) >
   Version: New version > Deploy. The PIN is never stored in this repo.
-- **Freeing a table or removing a wrong ticket**: delete that row on the sheet.
-  The table number can then be assigned again.
+- **Tables**: a Brunch Crew table takes 4 people, one ticket each, entered one
+  at a time with the same table number. The fifth ticket for a table is refused.
+  To change the number of seats, change `SEATS_PER_TABLE` in the script and
+  deploy a new version.
+- **Freeing a seat or removing a wrong ticket**: delete that row on the sheet.
+  The seat can then be assigned again.
 - **Ticket artwork**: replace the files in `assets/` with new 2576 x 2576
   exports that keep the name bar and table number in the same place.
 - **Connecting a different sheet**: put that sheet's web app link in

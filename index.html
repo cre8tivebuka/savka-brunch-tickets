@@ -299,7 +299,7 @@
         <div class="field table-field" id="table-field" hidden>
           <label for="table">Table number for this crew</label>
           <input id="table" name="table" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3">
-          <span class="hint">Numbers only. A table that is already assigned cannot be given out twice.</span>
+          <span class="hint">Numbers only. A table takes 4 people, one ticket each. Use the same number for everyone on that table.</span>
         </div>
 
         <button class="btn go" id="save" type="submit">Save and download ticket</button>
@@ -326,6 +326,7 @@
         </dl>
         <div class="actions">
           <button class="btn go" id="share" type="button" hidden>Share ticket to WhatsApp</button>
+          <button class="btn" id="same-table" type="button" hidden>Add next person to this table</button>
           <a class="btn" id="download" download>Download ticket again</a>
           <a class="btn quiet" id="chat" target="_blank" rel="noopener">Open WhatsApp chat with client</a>
           <button class="btn quiet" id="another" type="button">Issue another ticket</button>
@@ -569,7 +570,12 @@
     var hasTable = !!PACKAGES[ticket.package].table;
     $('issued-table-label').hidden = !hasTable;
     $('issued-table').hidden = !hasTable;
-    $('issued-table').textContent = hasTable ? ticket.table : '';
+    var seatsLeft = hasTable && ticket.seatsTotal ? ticket.seatsTotal - ticket.seatsTaken : 0;
+    $('issued-table').textContent = !hasTable ? '' : ticket.seatsTotal
+      ? ticket.table + ' (' + ticket.seatsTaken + ' of ' + ticket.seatsTotal + ' seats assigned' + (seatsLeft ? '' : ', table full') + ')'
+      : ticket.table;
+    $('same-table').hidden = !(seatsLeft > 0);
+    $('same-table').textContent = 'Add next person to table ' + ticket.table;
     $('issued-phone').textContent = ticket.phone;
 
     var dl = $('download');
@@ -633,13 +639,15 @@
         var message = (out && out.message) || 'The ticket was not saved. Try again.';
         showStatus('error', message);
         if (out && (out.code === 'PIN' || out.code === 'LOCKED')) { store('savka-pin', null); fields.pin.setAttribute('aria-invalid', 'true'); fields.pin.focus(); }
-        if (out && out.code === 'TABLE_TAKEN') { fields.table.setAttribute('aria-invalid', 'true'); fields.table.focus(); }
+        if (out && out.code === 'TABLE_FULL') { fields.table.setAttribute('aria-invalid', 'true'); fields.table.focus(); }
         return null;
       }
       store('savka-pin', pin);
       pendingRequestId = null;
       ticket.ticketId = out.ticketId;
       if (out.table) ticket.table = out.table;
+      ticket.seatsTaken = out.seatsTaken || 0;
+      ticket.seatsTotal = out.seatsTotal || 0;
       return renderFullTicket(ticket).then(function (blob) { showIssued(ticket, blob); });
     }).catch(function () {
       showStatus('error', 'Not saved. Check the internet connection and press save again.');
@@ -654,18 +662,27 @@
     navigator.share({ files: [current.file] }).catch(function () { /* she closed the share sheet */ });
   });
 
-  $('another').addEventListener('click', function () {
-    fields.name.value = ''; fields.email.value = ''; fields.phone.value = ''; fields.table.value = '';
-    fields.package.value = '';
+  // Back to the form. keepTable = the next person joins the same Brunch Crew table.
+  function backToForm(keepTable) {
+    var table = keepTable && current ? current.ticket.table : '';
+    fields.name.value = ''; fields.email.value = ''; fields.phone.value = '';
+    fields.package.value = keepTable ? 'crew' : '';
     syncTableField();
+    fields.table.value = table;
     clearStatus();
-    drawEmptyPreview();
-    $('preview-caption').textContent = 'Choose a package to see the ticket.';
+    if (keepTable) {
+      refreshPreview();
+    } else {
+      drawEmptyPreview();
+      $('preview-caption').textContent = 'Choose a package to see the ticket.';
+    }
     $('issued').hidden = true;
     $('desk').hidden = false;
     window.scrollTo(0, 0);
     fields.name.focus();
-  });
+  }
+  $('another').addEventListener('click', function () { backToForm(false); });
+  $('same-table').addEventListener('click', function () { backToForm(true); });
 
   fields.package.addEventListener('change', function () { syncTableField(); refreshPreview(); });
   fields.name.addEventListener('input', refreshPreview);
